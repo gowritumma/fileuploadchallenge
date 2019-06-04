@@ -13,6 +13,7 @@ class UploadsController < ApplicationController
     # Upload the file to S3
     obj.upload_file(params[:file].path)
     # Create an object for the upload
+    puts "after uploading to S3"
 
     @upload = Upload.new(
     	url: obj.public_url,
@@ -22,6 +23,7 @@ class UploadsController < ApplicationController
 		status: 0
     	)
     # Save the upload
+    puts "before saving the record"
     if @upload.save
 	  	filename = params[:file].path
 	  	file_ext = filename.split('.').pop
