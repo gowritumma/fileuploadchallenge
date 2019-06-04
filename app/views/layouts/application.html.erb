@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Fileuploadchallenge</title>
+     <script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyBKflsCnNu-XQRUJ0Gj2JhChCNnGhKdT2E"></script>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag "application" %>
+  </head>
+
+  <body>
+  	<% if notice %>
+  <p class="alert alert-success"><%= notice %></p>
+<% end %>
+<% if alert %>
+  <p class="alert alert-danger"><%= alert %></p>
+<% end %>
+
+<p class="navbar-text pull-right">
+<% if user_signed_in? %>
+<div class="topnav">
+  Logged in as <strong><%= current_user.email %></strong>.
+  <%= link_to 'Edit profile', edit_user_registration_path, :class => 'active' %> |
+  <%= link_to "Logout", destroy_user_session_path, method: :delete  %> | 
+
+<%= link_to 'Upload a file', new_upload_path %> |
+<%= link_to 'Search for counties and States data', counties_search_url %> | 
+<%= link_to 'Uploaded file info', uploads_url %> 
+<a href='#' >Logged in as <strong><%= current_user.email %></strong>.</a>
+</div>
+
+<% else %>
+<div class="topnav">
+
+  <%= link_to "Sign up", new_user_registration_path, :class => 'active'  %> |
+  <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
+<% end %>
+</div>
+</p>
+    <%= yield %>
+  </body>
+</html>

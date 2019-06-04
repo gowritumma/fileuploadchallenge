@@ -1,0 +1,38 @@
+<% if county.size < 1  %>
+No Results.
+<% else %>
+
+<table border=1>
+
+<% if flag == true %>
+    <tr> 
+        <td>Zip</td>
+        <td>County Name</td>
+        <td>City</td>
+        <td>State</td>
+    </tr>
+    <% county.each do |c| %>
+    <tr>
+        <td><%= c[0] %></td>
+        <td><%= c[1] %></td>
+        <td><%= c[2] %></td>
+        <td><%= c[3] %></td>
+    </tr>
+    <% end %>
+<% else %>
+    <tr> 
+        <td>County Count</td>
+        <td>City Count</td>
+        <td>Zip Count </td>
+    </tr>
+<% county.each do |c| %>
+
+    <tr>
+        <td><%= c[0] %></td>
+        <td><%= c[1] %></td>
+        <td><%= c[2] %></td>
+    </tr>
+    <% end %>
+<% end %>
+</table>
+<% end %>

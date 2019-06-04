@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  filename: MyString
+  url: MyString
+  user_id: 
+  processed: false
+
+two:
+  filename: MyString
+  url: MyString
+  user_id: 
+  processed: false

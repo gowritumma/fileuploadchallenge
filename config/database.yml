@@ -1,0 +1,17 @@
+development:
+  host: localhost
+  adapter: postgresql
+  encoding: unicode
+  database: borrowworks
+  pool: 5
+  username: gowridamarla
+  password: Welcome@1
+
+test:
+  host: localhost
+  adapter: postgresql
+  encoding: unicode
+  database: borrowworks
+  pool: 5
+  username: gowridamarla
+  password: Welcome@1

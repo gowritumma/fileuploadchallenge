@@ -1,0 +1,23 @@
+<h1>Search the counties with Zip and State Abbrevation.</h1>
+
+<%= form_for :search, :url => url_for(:controller => "counties", :action => "get_results"), 
+ :method => "get", :remote => true,  :format => :js do |f| %>
+  <div class="field">
+    <%= f.label :Zip %><br />
+    <%= f.text_field :zip%>
+  </div>
+  <div class="field">
+    <%= f.label :Abbrevation %><br />
+    <%= f.text_field :abbr%>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Search" %>
+  </div>
+<% end %>
+
+<div id="county">
+
+ </div>
+
+
