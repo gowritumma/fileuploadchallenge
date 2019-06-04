@@ -17,7 +17,15 @@
       <td><%= upload.id %></td>
       <td><%= link_to upload.filename, upload.url %></td>
       <td><%= upload.user.username %></td>
-      <td><%= upload.status %></td>
+      <% case upload.status 
+      when 0
+        status = "Not processed"
+      when 1
+        status = "Pocessed"
+      when 2
+        status = "in process.."
+        end %>
+      <td><%= status %></td>
       <td><% if upload.processed %> Uploaded  <%= link_to 'Download File', download_path(:id => upload.id) %><% else %> Not Uploaded <% end %></td>
     </tr>
 <% end %>
