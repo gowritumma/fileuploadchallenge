@@ -6,7 +6,10 @@ class UploadCsvJob < ApplicationJob
 
   def perform(upload_id, filename)
     # read the columns in the csv file to check if it is state data or county
+    filename = Upload.find(upload_id).url
+    puts filename
 	columns = CSV.read(filename, headers: true).headers
+  puts columns.count
 	columns.pop while columns.last.nil?
 	puts columns.count
 	if columns.count == 2
