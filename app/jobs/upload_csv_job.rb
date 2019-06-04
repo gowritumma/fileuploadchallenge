@@ -1,26 +1,35 @@
 require 'csv'
+require 'open-uri'
 class UploadCsvJob < ApplicationJob
   discard_on ActiveJob::DeserializationError
   queue_as :default
   around_perform :around_uploading
 
-  def perform(upload_id, filename)
+  def perform(upload_id)
     # read the columns in the csv file to check if it is state data or county
-    filename = Upload.find(upload_id).url
-    puts filename
-	columns = CSV.read(filename, headers: true).headers
-  puts columns.count
+    url = Upload.find(upload_id).url
+	columns = CSV.parse(open(url), headers: true).headers
 	columns.pop while columns.last.nil?
 	puts columns.count
 	if columns.count == 2
-		CSV.foreach(filename, :headers => true) do |row|
-	 	State.create!(abbr: row[0], name: row[1])
-		end
+    open(url) do |f|
+    f.each_line do |l|
+      CSV.parse(l) do |row|
+        State.create!(abbr: row[0], name: row[1])
+      end
+    end
+    end
+		
 	else
 		states = State.all
-		CSV.foreach(filename, :headers => true) do |row|
-	 	County.create!(zip: row[0], name: row[1], state_id: states.find_by_name(row[2]).id, city: row[3])
-		end
+    open(url) do |f|
+    f.each_line do |l|
+      CSV.parse(l) do |row|
+        State.create!(zip: row[0], name: row[1], state_id: states.find_by_name(row[2]).id, city: row[3])
+      end
+    end
+    end
+		
 	end
   end
 

@@ -29,10 +29,10 @@ class UploadsController < ApplicationController
 	  	file_ext = filename.split('.').pop
 	  	case file_ext
 	  		when "csv"
-	  		UploadCsvJob.perform_later(@upload.id, filename)
+	  		UploadCsvJob.perform_later(@upload.id)
 	  		# process_csv_file (filename)
 	  		when "txt"
-	  		UploadTxtfileJob.perform_later(@upload.id, filename)
+	  		UploadTxtfileJob.perform_later(@upload.id)
 	  		# process_txt_file (filename)
 	  		else
 	  		flash.now[:notice] = 'File format not accepted'
@@ -43,12 +43,12 @@ class UploadsController < ApplicationController
     else
       flash.now[:notice] = 'There was an error'
     end
-    @uploads = Upload.all
+   	  @uploads = Upload.joins(:user).includes(:user)
     
  end
 
 def index
-	  @uploads = Upload.all
+	  @uploads = Upload.joins(:user).includes(:user)
 end
 
 def download 
