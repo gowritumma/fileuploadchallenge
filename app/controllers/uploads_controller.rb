@@ -7,21 +7,23 @@ class UploadsController < ApplicationController
 
  def create
     # Make an object in your bucket for your upload
-    obj = S3_BUCKET.object(params[:uploads][:file].original_filename)
+    puts params[:file].original_filename
+    obj = S3_BUCKET.object(params[:file].original_filename)
+    puts params[:file].original_filename
     # Upload the file to S3
-    obj.upload_file(params[:uploads][:file].path)
+    obj.upload_file(params[:file].path)
     # Create an object for the upload
 
     @upload = Upload.new(
     	url: obj.public_url,
-		filename: params[:uploads][:file].original_filename,
+		filename: params[:file].original_filename,
 		user_id: current_user.id,
 		processed: obj.public_url ? true : false,
 		status: 0
     	)
     # Save the upload
     if @upload.save
-	  	filename = params[:uploads][:file].path
+	  	filename = params[:file].path
 	  	file_ext = filename.split('.').pop
 	  	case file_ext
 	  		when "csv"
