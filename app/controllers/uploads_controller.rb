@@ -39,12 +39,12 @@ class UploadsController < ApplicationController
     else
       flash.now[:notice] = 'There was an error'
     end
-    @uploads = Upload.all
+    @uploads = Upload.joins(:user).includes(:user)
     
  end
 
 def index
-	  @uploads = Upload.all
+	  @uploads = Upload.joins(:user).includes(:user).pluck("uploads.id as id, uploads.status as status, uploads.processed as processed, uploads.filename as filename, uploads.url as url, users.username as username, users.email as email")
 end
 
 def download 
