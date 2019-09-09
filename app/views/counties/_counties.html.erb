@@ -1,0 +1,16 @@
+<table>
+<tr> 
+	<td>zip</td>
+	<td>County Name</td>
+	<td>City</td>
+	<td>State</td>
+</tr>
+<% @counties.each do |county| %>
+<tr>
+	<td><%= county[0] %></td>
+	<td><%= county[1] %></td>
+	<td><%= county[2] %></td>
+	<td><%= county[3] %></td>
+</tr>
+<% end %>
+</table>

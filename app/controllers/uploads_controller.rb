@@ -3,17 +3,19 @@ require 'open-uri'
 
 class UploadsController < ApplicationController
  def new
+ 	puts "in new method"
  end
 
  def create
+ 	puts "in create"
     # Make an object in your bucket for your upload
-    puts params[:file].original_filename
+
     obj = S3_BUCKET.object(params[:file].original_filename)
-    puts params[:file].original_filename
+    puts "after obj"
     # Upload the file to S3
     obj.upload_file(params[:file].path)
     # Create an object for the upload
-    puts "after uploading to S3"
+    puts "after obj"
 
     @upload = Upload.new(
     	url: obj.public_url,
@@ -22,6 +24,7 @@ class UploadsController < ApplicationController
 		processed: obj.public_url ? true : false,
 		status: 0
     	)
+    puts "after @upload object"
     # Save the upload
     puts "before saving the record"
     if @upload.save
@@ -44,11 +47,12 @@ class UploadsController < ApplicationController
       flash.now[:notice] = 'There was an error'
     end
    	  @uploads = Upload.joins(:user).includes(:user)
+
     
  end
 
 def index
-	  @uploads = Upload.joins(:user).includes(:user)
+	  @uploads = Upload.joins(:user).includes(:user).pluck("uploads.id as id, uploads.status as status, uploads.processed as processed, uploads.filename as filename, uploads.url as url, users.username as username, users.email as email")
 end
 
 def download 
