@@ -24,6 +24,7 @@
         </td>
       <td><% if(upload[1] == 0) %>Not completed <% elsif(upload[1] == 1) %> Completed <% else %> In progress <% end %></td>
       <td><% if upload[2] %> Uploaded  <%= link_to 'Download File', download_path(:id => upload[0]) %><% else %> Not Uploaded <% end %></td>
+
     </tr>
 <% end %>
 
