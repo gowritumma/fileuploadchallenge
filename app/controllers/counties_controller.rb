@@ -35,4 +35,28 @@ def get_counties_with_zip(zip)
 	@counties = County.where("counties.zip = ?", zip).joins(:state).includes(:state).pluck("counties.zip as zip, counties.name as county_name, counties.city as city, states.name as state_name")
 end
 
+# gets the typed state name data
+def search_state
+  puts "in search state"
+  @find = State.where('name LIKE ?', "%#{params[:q]}%")
+  render json: @find
+end
+
+# renders the view with typehead for state names
+def states_info
+end
+
+#get the list of counties for the selected state name
+def get_counties_for_statename
+  puts "in get_counties_for_statename"
+  state_id = State.find_by_name(params[:name])
+  puts state_id
+  @counties = County.where("state_id = ?", state_id).joins(:state).includes(:state).pluck("counties.zip as zip, counties.name as county_name, counties.city as city, states.name as state_name")
+   respond_to do |format|
+        format.js
+    end
+  # render json: { html: render_to_string(partial: 'counties', locals: { counties: @counties } ) }  
+end
+
+
 end

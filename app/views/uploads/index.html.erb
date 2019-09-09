@@ -7,8 +7,8 @@
       <th scope="col">#</th>
       <th scope="col">AWS Link</th>
       <th scope="col">Added by</th>
-      <th scope="col">Status</th>
-      <th scope="col"></th>
+      <th scope="col">Dumped in DB</th>
+      <th scope="col">Uploaded to S3?</th>
     </tr>
   </thead>
   <tbody>
@@ -16,13 +16,13 @@
   <tr>
       <td><%= upload[0] %></td>
       <td><%= link_to upload[3], upload[4] %></td>
-      <td><% if(upload[5]) %>
-        <%= upload[6] %>
-        <% else %>
+      <td><% if(!upload[5].blank?) %>
         <%= upload[5] %>
+        <% else %>
+        <%= upload[6] %>
         <% end %>
         </td>
-      <td><%= upload[1] %></td>
+      <td><% if(upload[1] == 0) %>Not completed <% elsif(upload[1] == 1) %> Completed <% else %> In progress <% end %></td>
       <td><% if upload[2] %> Uploaded  <%= link_to 'Download File', download_path(:id => upload[0]) %><% else %> Not Uploaded <% end %></td>
     </tr>
 <% end %>

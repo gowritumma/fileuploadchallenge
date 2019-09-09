@@ -6,6 +6,7 @@
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+     <%= stylesheet_link_tag    'application' %>
     <%= javascript_include_tag "application" %>
   </head>
 
@@ -20,20 +21,22 @@
 <p class="navbar-text pull-right">
 <% if user_signed_in? %>
 <div class="topnav">
-  Logged in as <strong><%= current_user.email %></strong>.
-  <%= link_to 'Edit profile', edit_user_registration_path, :class => 'active' %> |
-  <%= link_to "Logout", destroy_user_session_path, method: :delete  %> | 
+ 
+ 
 
-<%= link_to 'Upload a file', new_upload_path %> |
-<%= link_to 'Search for counties and States data', counties_search_url %> | 
+<%= link_to 'Upload a file', new_upload_path %> 
+<%= link_to 'Search for counties and States data', counties_search_url %> 
 <%= link_to 'Uploaded file info', uploads_url %> 
-<a href='#' >Logged in as <strong><%= current_user.email %></strong>.</a>
+<%= link_to 'States Info', counties_states_info_url %>
+ <%= link_to 'Edit profile', edit_user_registration_path%> 
+  <%= link_to "Logout", destroy_user_session_path, method: :delete  %> 
+<div class="right"><a href='#' class='active'>Logged in as <strong><%= current_user.email %></strong>.</a></div>
 </div>
 
 <% else %>
 <div class="topnav">
 
-  <%= link_to "Sign up", new_user_registration_path, :class => 'active'  %> |
+  <%= link_to "Sign up", new_user_registration_path, :class => 'active'  %> 
   <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
 <% end %>
 </div>
