@@ -9,12 +9,14 @@ class UploadsController < ApplicationController
  def create
  	puts "in create"
     # Make an object in your bucket for your upload
+
     obj = S3_BUCKET.object(params[:file].original_filename)
     puts "after obj"
     # Upload the file to S3
     obj.upload_file(params[:file].path)
     # Create an object for the upload
-puts "after obj"
+    puts "after obj"
+
     @upload = Upload.new(
     	url: obj.public_url,
 		filename: params[:file].original_filename,
@@ -24,15 +26,16 @@ puts "after obj"
     	)
     puts "after @upload object"
     # Save the upload
+    puts "before saving the record"
     if @upload.save
 	  	filename = params[:file].path
 	  	file_ext = filename.split('.').pop
 	  	case file_ext
 	  		when "csv"
-	  		UploadCsvJob.perform_later(@upload.id, filename)
+	  		UploadCsvJob.perform_later(@upload.id)
 	  		# process_csv_file (filename)
 	  		when "txt"
-	  		UploadTxtfileJob.perform_later(@upload.id, filename)
+	  		UploadTxtfileJob.perform_later(@upload.id)
 	  		# process_txt_file (filename)
 	  		else
 	  		flash.now[:notice] = 'File format not accepted'
@@ -43,7 +46,8 @@ puts "after obj"
     else
       flash.now[:notice] = 'There was an error'
     end
-    @uploads = Upload.joins(:user).includes(:user)
+   	  @uploads = Upload.joins(:user).includes(:user)
+
     
  end
 

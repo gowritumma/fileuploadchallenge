@@ -3,10 +3,11 @@ class UploadTxtfileJob < ApplicationJob
   queue_as :default
   around_perform :around_uploading
 
-  def perform(upload_id, filename)
+  def perform(upload_id)
     # Do something later
+    filename = Upload.find(upload_id).url
     states = State.all
- 	IO.foreach(filename) do |line| 
+ 	IO.foreach(open(filename)) do |line| 
     # You might be able to use split or something to get attributes
     attrs = line.split('|')
     puts attrs[0]

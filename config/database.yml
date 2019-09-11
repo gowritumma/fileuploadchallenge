@@ -1,3 +1,10 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  # For details on connection pooling, see Rails configuration guide
+  # http://guides.rubyonrails.org/configuring.html#database-pooling
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
 development:
   host: localhost
   adapter: postgresql
@@ -15,3 +22,9 @@ test:
   pool: 5
   username: gowridamarla
   password: Welcome@1
+
+production:
+  <<: *default
+  database: borrowworks
+  username: gowridamarla
+  password: <%= ENV['MYAPP_DATABASE_PASSWORD'] %>
