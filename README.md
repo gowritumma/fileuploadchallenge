@@ -27,3 +27,5 @@ run rails db:migrate
 * Deployment instructions
 
 * ...
+Url to heroku website is 
+https://enigmatic-anchorage-31092.herokuapp.com/
