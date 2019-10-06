@@ -37,6 +37,9 @@ gem 'devise'
 
 gem 'sidekiq'
 
+# This will add error logging and the ability for your app to serve static assets.
+gem 'rails_12factor' 
+
 # For consuming rest services
 gem 'httparty'
 
