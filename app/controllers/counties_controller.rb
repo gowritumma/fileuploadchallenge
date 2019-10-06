@@ -4,6 +4,7 @@ class CountiesController < ApplicationController
   end
 
 def get_results
+  respond_to do |format|
 	puts params[:search][:zip]
 	@zip_flag = true
   	if params[:search][:abbr] != ''
@@ -14,9 +15,8 @@ def get_results
   		puts " calling zip code method"
   		@county = get_counties_with_zip params[:search][:zip]
   	end
-  	 respond_to do |format|
       format.js 
-    end
+  end
 end
 
 def get_counties_states_abbr(abbr)
