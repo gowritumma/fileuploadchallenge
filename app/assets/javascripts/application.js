@@ -13,6 +13,8 @@
 //= require_self
 //= require jquery
 //= require jquery_ujs
+//= require bootstrap-sprockets
+//= require bootstrap
 //= require jquery-ui
+//= require jquery.remotipart
 //= require_tree .
-//../../../vendor/assets/javascripts/plugins/typeahead/ .

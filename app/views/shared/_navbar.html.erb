@@ -1,0 +1,18 @@
+
+<% if user_signed_in? %>
+
+<ul class="nav nav-tabs">
+<li><%= link_to 'Upload a file', new_upload_path, class:"navbar-brand" %> </li>
+<li><%= link_to 'Search for Counties/States data', counties_search_url, class:"navbar-brand"  %> </li>
+<li><%= link_to 'States Info', counties_states_info_url, class:"navbar-brand" %></li>
+ <li><%= link_to 'Edit profile', edit_user_registration_path, class:"navbar-brand" %> </li>
+ <li> <%= link_to "Logout", destroy_user_session_path, method: :delete , class:"navbar-brand" %> </li>
+<div class="right"><a href='#' class='navbar-brand active'>Logged in as <strong><%= current_user.email %></strong>.</a></div></li>
+</ul>
+<% else %>
+
+<ul class="nav nav-tabs">
+  <li><%= link_to "Sign up", new_user_registration_path, :class => 'active'  %> </li>
+ <li> <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %></li>
+</ul>
+<% end %>

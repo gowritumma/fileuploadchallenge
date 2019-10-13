@@ -9,10 +9,11 @@ Rails.application.routes.draw do
   get 'counties/get_counties_for_statename', to: "counties#get_counties_for_statename"
   get '/uploads/download/:id', to: 'uploads#download', as: "download"
   get 'search_state/:q' => 'counties#search_state'
-  get 'get_counties_for_statename/:name' => 'counties#get_counties_for_statename'
-  # post '/uploads', to: "uploads#create"
+  # get 'get_counties_for_statename/:state' => 'counties#get_counties_for_statename'
+  post '/uploads', to: "uploads#create"
   # get '/uploads', to: "uploads#index"
   # get 'uploads/new', to: 'uploads#new'
+  get 'counties/get_counties_for_stateId/', to: "counties#get_counties_for_stateId", as: "counties_for_state"
   devise_for :users
   devise_scope :user do
    get "signup", to: "devise/registrations#new"

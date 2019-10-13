@@ -20,6 +20,8 @@ gem 'uglifier', '2.7.2'
 # gem 'therubyracer', platforms: :ruby
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
+
+gem "remotipart", "~> 1.2"
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
@@ -36,14 +38,14 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'devise'
 
 gem 'sidekiq'
-
+gem 'rails-ujs'
 # This will add error logging and the ability for your app to serve static assets.
 gem 'rails_12factor' 
 
 # For consuming rest services
 gem 'httparty'
 
-gem 'bootstrap-sass'
+gem 'bootstrap-sass', '~>3.2.0.2'
 # amazon s3 gem
 gem 'aws-sdk', '~> 2.3'
 # gem for file upload.

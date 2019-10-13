@@ -58,5 +58,14 @@ def get_counties_for_statename
   # render json: { html: render_to_string(partial: 'counties', locals: { counties: @counties } ) }  
 end
 
+def get_counties_for_stateId
+  puts "here........."
+  puts params[:id]
+  state_id = params[:id]
+  @counties = County.where("state_id = ?", state_id).joins(:state).includes(:state).pluck("counties.zip as zip, counties.name as county_name, counties.city as city, states.name as state_name")
+   respond_to do |format|
+        format.js
+    end
+end
 
 end

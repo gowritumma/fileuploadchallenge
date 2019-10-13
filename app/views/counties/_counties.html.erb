@@ -1,12 +1,12 @@
-<table>
-<tr> 
+<table class="table table-striped table-bordered">
+<tr scope="row"> 
 	<td>zip</td>
 	<td>County Name</td>
 	<td>City</td>
 	<td>State</td>
 </tr>
 <% @counties.each do |county| %>
-<tr>
+<tr scope="row">
 	<td><%= county[0] %></td>
 	<td><%= county[1] %></td>
 	<td><%= county[2] %></td>

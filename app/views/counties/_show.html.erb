@@ -2,17 +2,17 @@
 No Results.
 <% else %>
 
-<table border=1>
+<table class="table table-striped table-bordered">
 
 <% if flag == true %>
-    <tr> 
+    <tr scope="row"> 
         <td>Zip</td>
         <td>County Name</td>
         <td>City</td>
         <td>State</td>
     </tr>
     <% county.each do |c| %>
-    <tr>
+    <tr scope="row">
         <td><%= c[0] %></td>
         <td><%= c[1] %></td>
         <td><%= c[2] %></td>
@@ -20,14 +20,14 @@ No Results.
     </tr>
     <% end %>
 <% else %>
-    <tr> 
-        <td>County Count</td>
-        <td>City Count</td>
-        <td>Zip Count </td>
+    <tr scope="row"> 
+        <td>Total No. of Counties</td>
+        <td>Total No. of Cities</td>
+        <td>Total Zip codes</td>
     </tr>
 <% county.each do |c| %>
 
-    <tr>
+    <tr scope="row">
         <td><%= c[0] %></td>
         <td><%= c[1] %></td>
         <td><%= c[2] %></td>
