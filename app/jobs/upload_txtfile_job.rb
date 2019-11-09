@@ -1,3 +1,4 @@
+require 'open-uri'
 class UploadTxtfileJob < ApplicationJob
   discard_on ActiveJob::DeserializationError
   queue_as :default
@@ -7,7 +8,8 @@ class UploadTxtfileJob < ApplicationJob
     # Do something later
     filename = Upload.find(upload_id).url
     states = State.all
- 	IO.foreach(open(filename)) do |line| 
+    f = open(filename)
+    f.each_line do |line|
     # You might be able to use split or something to get attributes
     attrs = line.split('|')
     puts attrs[0]

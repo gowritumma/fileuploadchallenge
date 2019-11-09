@@ -27,6 +27,8 @@ class UploadsController < ApplicationController
 		processed: obj.public_url ? true : false,
 		status: 0
     	)
+    # aws s3 url
+    puts @newupload.url
     puts "after @upload object"
     # Save the upload
     puts "before saving the record"
@@ -36,14 +38,9 @@ class UploadsController < ApplicationController
 	  	case file_ext
 	  		when "csv"
 	  		UploadCsvJob.perform_later(@newupload.id)
-	  		# process_csv_file (filename)
 	  		when "txt"
 	  		UploadTxtfileJob.perform_later(@newupload.id)
-	  		process_txt_file (filename)
-
-	  		# else
-	  		# flash.now[:notice] = 'File format not accepted'
-	        # render :new
+	  		
 	  	end
 	  	flash.now[:notice] = 'File saved to S3 bucket successfully'
 	    
