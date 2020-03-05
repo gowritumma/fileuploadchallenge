@@ -45,7 +45,7 @@ gem 'rails_12factor'
 # For consuming rest services
 gem 'httparty'
 
-gem 'bootstrap-sass', '~>3.2.0.2'
+gem 'bootstrap-sass', '~>3.4.1'
 # amazon s3 gem
 gem 'aws-sdk', '~> 2.3'
 # gem for file upload.
